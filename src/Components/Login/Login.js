@@ -1,8 +1,13 @@
-import React from 'react'
+import { useState , React }from 'react'
 import './Login.css'
 import cglogo from '../../images/cg-logo.png'
 
 function Login() {
+    const [passwordShown, setPasswordShown] = useState(false);
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
+    };
+
   return (
     <div className="card login-card mx-auto">
     <form className='login-form'>
@@ -15,9 +20,9 @@ function Login() {
         </div>
         <div className="mb-3">
             <label className="form-label login-label">Password</label>
-            <input type="password" id="password" className="form-control" placeholder="Enter password" />
-            <i class="bi bi-eye-slash" id="togglePassword"></i>
+            <input type={passwordShown ? "text" : "password"} className="form-control" placeholder="Enter password" />
         </div>
+        <input type="checkbox" class="form-check-input" onClick={togglePassword}/> &nbsp; Show Password
         <center>
             <button type="submit" className="login-btn">Login</button>
         <br/>
