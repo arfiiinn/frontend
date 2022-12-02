@@ -1,11 +1,14 @@
 import { useState , React }from 'react'
 import './Login.css'
 import cglogo from '../../images/cg-logo.png'
+import view from "../../images/view.png"
+import hide from "../../images/hide.png"
+
 
 function Login() {
-    const [passwordShown, setPasswordShown] = useState(false);
+    const[Eye, setEye] = useState(false);
     const togglePassword = () => {
-        setPasswordShown(!passwordShown);
+        setEye(!Eye);
     };
 
   return (
@@ -20,9 +23,12 @@ function Login() {
         </div>
         <div className="mb-3">
             <label className="form-label login-label">Password</label>
-            <input type={passwordShown ? "text" : "password"} className="form-control" placeholder="Enter password" />
+            <div className='d-flex flex-row'>
+            <input type={Eye ? "text" : "password"} className="form-control" placeholder="Enter password" />
+            <img className="eye" src={Eye ? view : hide} alt="hide" onClick={togglePassword}></img>
+            </div>
         </div>
-        <input type="checkbox" class="form-check-input" onClick={togglePassword}/> &nbsp; Show Password
+        {/* <input type="checkbox" class="form-check-input" onClick={togglePassword}/> &nbsp; Show Password */}
         <center>
             <button type="submit" className="login-btn mt-3">Login</button>
         <br/>
