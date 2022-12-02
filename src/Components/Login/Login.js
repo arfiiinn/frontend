@@ -26,7 +26,7 @@ function Login() {
         <center>
             <button type="submit" className="login-btn mt-3">Login</button>
         <br/>
-        <a href="/" className="login-link link-info">New User?</a></center>
+        <a href="/verify" className="login-link link-info">New User?</a></center>
         </div>
     </form>
     </div>

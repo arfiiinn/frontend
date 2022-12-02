@@ -21,7 +21,7 @@ function Verifyuser() {
         <center>
             <button type="submit" className="login-btn mt-3">Verify</button>
         <br/>
-        <a href="/" className="login-link link-info mt-2">Already Verified? Login</a></center>
+        Already Verified?<a href="/" className="login-link link-info mt-2"> Login</a></center>
         </div>
     </form>
     </div>
