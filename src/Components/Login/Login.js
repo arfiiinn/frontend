@@ -24,7 +24,7 @@ function Login() {
         </div>
         <input type="checkbox" class="form-check-input" onClick={togglePassword}/> &nbsp; Show Password
         <center>
-            <button type="submit" className="login-btn">Login</button>
+            <button type="submit" className="login-btn mt-3">Login</button>
         <br/>
         <a href="/" className="login-link link-info">New User?</a></center>
         </div>
