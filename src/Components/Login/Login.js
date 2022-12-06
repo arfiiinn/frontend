@@ -57,18 +57,18 @@ function Login() {
         <img src={cglogo} className="cg-logo mb-4" alt="Cg-Logo"/>iTransform Learning</h3>
         <div className="mb-3">
             <label className="form-label login-label">Corp Id</label>
-            <input type="email" className="form-control" value={state.CorpMail}
+             <input type="email" className="form-control" id="CorpMail" value={state.CorpMail}
               onChange={handleChange}placeholder='Enter corp email address'/>
         </div>
         <div className="mb-3">
             <label className="form-label login-label">Password</label>
             <div className='d-flex flex-row'>
-            <input type={Eye ? "text" : "password"} className="form-control" value={state.Password} onChange={handleChange}placeholder="Enter password" />
+            <input type={Eye ? "text" : "password"} className="form-control" id="Password" value={state.Password} onChange={handleChange}placeholder="Enter password" />
             <img className="eye" src={Eye ? view : hide} alt="hide" onClick={togglePassword}></img>
             </div>
         </div>
         <center>
-            <button type="submit" className="login-btn mt-3">Login</button>
+            <button type="submit" className="login-btn mt-3" onClick={handleSubmitClick}>Login</button>
         <br/>
         <a href="/verify" className="login-link link-info">New User?</a></center>
         </div>
