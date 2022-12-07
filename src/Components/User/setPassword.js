@@ -1,9 +1,12 @@
-import { useState , React }from 'react'
+import { useState , React, useEffect }from 'react'
 import view from "../../images/view.png"
 import hide from "../../images/hide.png"
 import "./Password.css"
+import Config from "../Settings/Config"
+import axios from 'axios';
 
 function SetPassword() {
+
     const [newPasswordShown, setnewPasswordShown] = useState(false);
     const [confirmPasswordShown, setconfirmPasswordShown] = useState(false);
     const[newEye, setnewEye] = useState(false);
@@ -18,7 +21,57 @@ function SetPassword() {
         setconfirmEye(!confirmEye);
     };
 
+    const[user,setUser] = useState({
+            FirstName : "",
+            LastName : "",
+            PersonalMail : "",
+            CorpMail : "",
+            Gender : "",
+            MobileNumber : "",
+            DOB : "",
+            DOJ : "",
+            Grade : "",
+            Location : "",
+            Role : "",
+            Password : "",
+            OTP : 0,
+            IsVerified : true
+    });
 
+
+    useEffect( () => {
+        axios.get(Config.api + 'Users/1') 
+        // .then(response => response.data)
+        // .then(res => setUser(
+        //     {
+        //     FirstName : res.data.firstName
+        //     // LastName : r,
+        //     // PersonalMail : "",
+        //     // CorpMail : "",
+        //     // Gender : "",
+        //     // MobileNumber : "",
+        //     // DOB : "",
+        //     // DOJ : "",
+        //     // Grade : "",
+        //     // Location : "",
+        //     // Role : "",
+        //     // Password : "",
+        //     // OTP : 0,
+        //     // IsVerified : true
+        // }
+        // ))
+        .then(res => console.log(res.data.firstName,user.FirstName))
+        .catch(error => console.log(error))
+    } , []) 
+
+    const updatePassword = () => {
+        axios.put(Config.api + `Users/1`, user)
+        .then(response => response.data)
+        .then(alert('Password changed Successfully '))
+        .catch(error => alert("Oops! Something went wrong."))
+        sessionStorage.clear()
+        window.location.reload()
+    }
   return (
     <div className="card pass-card mx-auto">
     <form className='login-form'>
