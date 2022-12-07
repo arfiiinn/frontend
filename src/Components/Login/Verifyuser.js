@@ -6,16 +6,17 @@ import Config from '../../Settings/config'
 import {useNavigate} from 'react-router-dom';
 
 function Verifyuser() {
-  const [newUser, setNewUser] = useState();
+  const [userId, setuserId] = useState("");
   const navigate = useNavigate();
   const [state, setState] = useState({
     PersonalMail: "",
     CorpMail: "",
   });
 
-  const getVerifiedId = id => {
+  const getVerifiedId = (id) => {
       navigate('/otp',{state:{Id:id}});
-    }
+  }
+  
   const handleChange = (e) => {
     const { id, value } = e.target;
     setState((prevState) => ({
@@ -23,6 +24,12 @@ function Verifyuser() {
       [id]: value,
     }));
   };
+
+  function sendotp() {
+    axios.post(Config.api + `EmailSender/SendOTP/?id=${sessionStorage.getItem("user")}`)
+      .then(res => { alert("Email sent !!") })
+    .catch(err => alert("nhi hua sent"))
+  }
 
   const handleSubmitClick = (e) => {
     e.preventDefault();
@@ -32,11 +39,12 @@ function Verifyuser() {
     };
 
     axios.get(Config.api + `NewUser?Mail1=${payload.PersonalMail}&Mail2=${payload.CorpMail}`)
-    .then((res) => {getVerifiedId(res.data.userId) ; console.log(res.data , res.data.userId)})
-    .then(console.log(`User: ${newUser}`))
+      .then((res) => { sessionStorage.setItem("user", res.data.userId); console.log(res.data.userId) })
+      .then(setuserId(sessionStorage.getItem("user")))
+      .then(getVerifiedId(userId))
+      .then(sendotp())
+      .then(console.log(userId))
       .catch(err => alert("Oops! Something went wrong."))
-    
-
 }
 
   return (
